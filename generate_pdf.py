@@ -122,7 +122,7 @@ candidate_meta = [
         Paragraph("<b>Prototype Repository:</b> <a href='https://github.com/khai0335814880-create/mystorage-intern-challenge'><u>GitHub Source Code</u></a>", body_style)
     ],
     [
-        Paragraph("<b>Live Prototype URL:</b> <a href='https://mystorage-intern-challenge.vercel.app/'><u>mystorage-intern-challenge.vercel.app</u></a>", body_style),
+        Paragraph("<b>Live Prototype URL:</b> <a href='https://mystorage-intern-challenge-e507g80yp.vercel.app/'><u>mystorage-intern-challenge-e507g80yp.vercel.app</u></a>", body_style),
         Paragraph("<b>Canonical Spec:</b> <a href='https://mystorage.vn/llms.txt'><u>https://mystorage.vn/llms.txt</u></a>", body_style)
     ]
 ]
@@ -176,7 +176,7 @@ story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#E2E8F
 
 story.append(Paragraph("To address Findings 1, 2, and 3, a working Angular prototype **STOW 2.0 AI Sales Assistant & Size Estimator** was engineered in <b>src/app/stow-assistant/</b>.", body_style))
 story.append(Paragraph("<b>How Reviewers Can Access & Test the Prototype:</b>", h2_style))
-story.append(Paragraph("• <b>Option A (Live Deployed Web Application):</b> Visit <a href='https://mystorage-intern-challenge.vercel.app/'><u>https://mystorage-intern-challenge.vercel.app/</u></a> on any browser or mobile device.", bullet_style))
+story.append(Paragraph("• <b>Option A (Live Deployed Web Application):</b> Visit <a href='https://mystorage-intern-challenge-e507g80yp.vercel.app/'><u>https://mystorage-intern-challenge-e507g80yp.vercel.app/</u></a> on any browser or mobile device.", bullet_style))
 story.append(Paragraph("• <b>Option B (Source Code Repository):</b> Inspect full source code on GitHub: <a href='https://github.com/khai0335814880-create/mystorage-intern-challenge'><u>khai0335814880-create/mystorage-intern-challenge</u></a>.", bullet_style))
 story.append(Paragraph("• <b>Option C (Local Execution Steps):</b>", bullet_style))
 story.append(Paragraph("git clone https://github.com/khai0335814880-create/mystorage-intern-challenge.git\ncd mystorage-intern-challenge\nnpm install\nnpm start\n# Open http://localhost:4200/ in your browser", code_style))
@@ -205,7 +205,7 @@ story.append(Spacer(1, 10))
 story.append(Paragraph("4. Brief Note on AI Tool Usage (< 300 words)", h1_style))
 story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#E2E8F0'), spaceAfter=6))
 story.append(Paragraph("<i>Question: What's the last thing you built with an AI coding tool, and what did you have to fix yourself?</i>", ParagraphStyle('ItalicHead', parent=body_style, fontName='Helvetica-Oblique', textColor=colors.HexColor('#475569'))))
-story.append(Paragraph("The last project I built with an AI coding tool (Antigravity AI) was my interactive Developer Portfolio and the STOW 2.0 AI Assistant prototype for MyStorage. While the AI rapidly scaffolded the UI components and PDF generation scripts, I had to fix several critical issues myself: refactoring legacy Angular template syntax, fixing signal array mutation bugs (`this.items().push` vs `.update()`), resolving i18n locale state desync across chat and voice modes, and engineering a custom Python PDF merger script to combine my CV with clickable assignment links into a single PDF under the 4MB limit.", body_style))
+story.append(Paragraph("The last project I built with an AI coding tool (Antigravity AI) was my interactive Developer Portfolio and the STOW 2.0 AI Assistant prototype for MyStorage. While the AI rapidly scaffolded UI components and PDF generation scripts, I had to fix several critical issues myself: refactoring legacy Angular template syntax, fixing signal array mutation bugs (`this.items().push` vs `.update()`), resolving i18n locale state desync across chat and voice modes, and engineering a custom Python PDF merger script to combine my CV with clickable assignment links into a single PDF under the 4MB limit.", body_style))
 
 # Build temporary report PDF
 doc.build(story)

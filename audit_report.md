@@ -6,6 +6,7 @@
 **LinkedIn**: `https://www.linkedin.com/in/khải-nguyễn-như`  
 **GitHub**: `https://github.com/khai0335814880-create`  
 **Portfolio**: `https://figma-portfolio-drab.vercel.app/`  
+**Live Prototype URL**: `https://mystorage-intern-challenge-e507g80yp.vercel.app/`  
 **Canonical Source Ground Truth**: `https://mystorage.vn/llms.txt` & `https://mystorage.vn/`  
 **Date**: September 2026  
 
@@ -99,7 +100,7 @@ Switching languages via the top header flag dropdown (e.g., switching from Vietn
 
 ## How Reviewers & Interviewers Can Test the STOW 2.0 Prototype
 
-1. **Live Deployed Web Application**: Visit [mystorage-intern-challenge.vercel.app](https://mystorage-intern-challenge.vercel.app/).
+1. **Live Deployed Web Application**: Visit [mystorage-intern-challenge-e507g80yp.vercel.app](https://mystorage-intern-challenge-e507g80yp.vercel.app/).
 2. **GitHub Source Code**: Inspect the codebase at [github.com/khai0335814880-create/mystorage-intern-challenge](https://github.com/khai0335814880-create/mystorage-intern-challenge).
 3. **Local Run Commands**:
    ```bash

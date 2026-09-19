@@ -6,6 +6,7 @@
 **LinkedIn**: [linkedin.com/in/khải-nguyễn-như](https://www.linkedin.com/in/kh%E1%BA%A3i-nguy%E1%BB%85n-nh%C6%B0)  
 **GitHub**: [github.com/khai0335814880-create](https://github.com/khai0335814880-create)  
 **Portfolio**: [figma-portfolio-drab.vercel.app](https://figma-portfolio-drab.vercel.app/)  
+**Live Prototype URL**: [mystorage-intern-challenge-e507g80yp.vercel.app](https://mystorage-intern-challenge-e507g80yp.vercel.app/)  
 
 ---
 
@@ -35,7 +36,7 @@ mystorage-intern-challenge/
 
 ## 🌐 How Reviewers Can Access & Test the STOW 2.0 Prototype
 
-1. **Live Deployed Prototype URL**: Visit [mystorage-intern-challenge.vercel.app](https://mystorage-intern-challenge.vercel.app/).
+1. **Live Deployed Prototype URL**: Visit [mystorage-intern-challenge-e507g80yp.vercel.app](https://mystorage-intern-challenge-e507g80yp.vercel.app/).
 2. **GitHub Source Code**: Inspect repository at [github.com/khai0335814880-create/mystorage-intern-challenge](https://github.com/khai0335814880-create/mystorage-intern-challenge).
 3. **Local Run Commands**:
    ```bash
