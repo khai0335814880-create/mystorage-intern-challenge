@@ -1,0 +1,145 @@
+<div class="stow-container">
+  <!-- Header Navbar -->
+  <header class="stow-header">
+    <div class="brand flex-align">
+      <div class="logo-badge">STOW 2.0</div>
+      <div>
+        <h1 class="brand-title">MyStorage AI Sales Assistant & Size Estimator</h1>
+        <p class="brand-sub">Ground Truth Synced with llms.txt · Enterprise Prototype</p>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <!-- Language Switcher (Fix for Finding 3) -->
+      <div class="lang-switch">
+        <button [class.active]="currentLocale() === 'vi'" (click)="toggleLocale('vi')">🇻🇳 Tiếng Việt</button>
+        <button [class.active]="currentLocale() === 'en'" (click)="toggleLocale('en')">🇬🇧 English</button>
+      </div>
+      <a href="https://mystorage.vn/llms.txt" target="_blank" class="btn-canonical">
+        📄 Canonical llms.txt
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Grid Layout -->
+  <div class="stow-grid">
+
+    <!-- LEFT PANEL: Item Manager & Intelligent Estimator -->
+    <div class="panel item-panel">
+      <div class="panel-header">
+        <h2>📦 {{ currentLocale() === 'vi' ? 'Quản lý Đồ đạc & Ước tính Kích thước' : 'Item Manager & Size Estimator' }}</h2>
+        <span class="badge badge-cbm">{{ totalVolumeCbm() | number:'1.2-2' }} m³</span>
+      </div>
+
+      <!-- Quick Presets -->
+      <div class="preset-bar">
+        <span class="preset-label">Thêm nhanh:</span>
+        <button *ngFor="let p of presets" class="btn-preset" (click)="applyPreset(p)">
+          + {{ p.name }}
+        </button>
+      </div>
+
+      <!-- Add Item Form -->
+      <form (submit)="addItem()" class="add-item-form">
+        <div class="form-row">
+          <input type="text" [(ngModel)]="newItemName" name="itemName" placeholder="Tên món đồ (ví dụ: Sofa, Tủ sách)" class="input-name" required />
+          <input type="number" [(ngModel)]="newItemQty" name="itemQty" placeholder="Số lượng" class="input-qty" min="1" required />
+        </div>
+        <div class="form-row dimensions-row">
+          <label>Rộng (mm): <input type="number" [(ngModel)]="newItemWidth" name="w" class="input-dim" /></label>
+          <label>Sâu (mm): <input type="number" [(ngModel)]="newItemDepth" name="d" class="input-dim" /></label>
+          <label [class.highlight-height]="newItemHeight > 2000">Cao (mm): <input type="number" [(ngModel)]="newItemHeight" name="h" class="input-dim" /></label>
+          <button type="submit" class="btn-add">+ Thêm đồ</button>
+        </div>
+      </form>
+
+      <!-- Items List -->
+      <div class="item-list">
+        <div *ngFor="let item of items()" class="item-card" [class.oversized-card]="item.heightMm > 2000">
+          <div class="item-info">
+            <span class="item-qty">{{ item.quantity }}x</span>
+            <span class="item-title">{{ item.name }}</span>
+            <span *ngIf="item.heightMm > 2000" class="tag-oversized">⚠️ Quá khổ (>2.0m)</span>
+          </div>
+          <div class="item-specs">
+            <span>{{ item.widthMm }} x {{ item.depthMm }} x {{ item.heightMm }} mm</span>
+            <span class="item-vol">{{ ((item.widthMm * item.depthMm * item.heightMm) / 1000000000 * item.quantity) | number:'1.3-3' }} m³</span>
+            <button (click)="removeItem(item.id)" class="btn-remove">✕</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SMART RECOMMENDATION CARD (Fix for Finding 2 & Finding 1) -->
+      <div class="recommend-card" [class.alert-border]="recommendedSolution().isOversizedFallback">
+        <div class="recommend-badge" [class.badge-alert]="recommendedSolution().isOversizedFallback">
+          {{ recommendedSolution().isOversizedFallback ? '🚨 ĐỀ XUẤT KHO THAY THẾ (FIX FINDING 2)' : '💡 ĐỀ XUẤT KHO THÍCH HỢP' }}
+        </div>
+
+        <h3 class="recommend-title">{{ recommendedSolution().type }}</h3>
+
+        <div class="recommend-details">
+          <div class="detail-item">
+            <span class="detail-label">Thể tích ước tính:</span>
+            <span class="detail-val">{{ recommendedSolution().sizeStr }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Giá ước tính (llms.txt chuẩn):</span>
+            <span class="detail-val price-highlight">{{ recommendedSolution().priceEst | number }} VNĐ/tháng</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Chi nhánh đề xuất:</span>
+            <span class="detail-val">{{ recommendedSolution().facility }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Bảo hiểm cơ bản (Free):</span>
+            <span class="detail-val">{{ insuranceCoverage().formula }}</span>
+          </div>
+        </div>
+
+        <div *ngIf="recommendedSolution().isOversizedFallback" class="oversized-note">
+          <strong>Lý do:</strong> Danh sách của bạn chứa đồ vật quá khổ (<em>{{ oversizedItemNames() }}</em>) vượt quá chiều cao chuẩn 2.0m của kho tự quản. STOW 2.0 đã tự động chuyển hướng sang dịch vụ kho Shelf-space Đồng Nai để bảo đảm an toàn cho tài sản.
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL: Chat with STOW 2.0 -->
+    <div class="panel chat-panel">
+      <div class="panel-header">
+        <h2>💬 Chat với STOW 2.0</h2>
+        <span class="status-online">● Online (Accuracy 100%)</span>
+      </div>
+
+      <!-- Chat History -->
+      <div class="chat-messages">
+        <div *ngFor="let msg of messages()" class="msg-row" [class.msg-user]="msg.sender === 'user'" [class.msg-stow]="msg.sender === 'stow'">
+          <div class="msg-avatar">{{ msg.sender === 'user' ? '👤' : '🤖' }}</div>
+          <div class="msg-bubble" [class.msg-oversized]="msg.isOversizedAlert">
+            <div class="msg-sender">{{ msg.sender === 'user' ? 'Bạn' : 'STOW 2.0' }}</div>
+            <div class="msg-text">{{ msg.text }}</div>
+            <div class="msg-time">{{ msg.timestamp | date:'HH:mm:ss' }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Suggested Prompt Pills -->
+      <div class="prompt-pills">
+        <button (click)="userInput.set('Báo giá lưu kho nhỏ nhất 1 tháng bao nhiêu?'); sendMessage()">💰 Hỏi giá chuẩn</button>
+        <button (click)="userInput.set('Chính sách bảo hiểm tối đa bao nhiêu?'); sendMessage()">🛡️ Hỏi bảo hiểm</button>
+        <button (click)="userInput.set('Có những vị trí kho nào ở TP.HCM?'); sendMessage()">📍 Hỏi vị trí kho</button>
+      </div>
+
+      <!-- Input Bar -->
+      <div class="chat-input-bar">
+        <input 
+          type="text" 
+          [value]="userInput()" 
+          (input)="userInput.set($any($event.target).value)" 
+          (keyup.enter)="sendMessage()"
+          placeholder="Nhập câu hỏi về giá, kích thước, bảo hiểm..."
+        />
+        <button (click)="sendMessage()" class="btn-send">Gửi</button>
+      </div>
+    </div>
+
+  </div>
+</div>

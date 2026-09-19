@@ -1,0 +1,66 @@
+NGUYỄN NHƯ KHẢI 
+•  Ho Chi Minh City, Vietnam   
+•  Phone: 0335814880   
+•  Email: khai0335814880@gmail.com 
+• Linkedin: linkedin.com/in/khải-nguyễn-như    
+• Github: https://github.com/khai0335814880-create 
+• Portfolio: https://figma-portfolio-drab.vercel.app/  
+SUMMARY 
+Final-year student majoring in Manageme nt Information Systems (MIS), skilled in market research and business analysis; 
+identifying business pain points and proposing improved technology solutions; data analysis; researching and working with 
+AI. Experienced in using AI to build websites, chatbots, and automation pipelines.  
+EDUCATION 
+Bachelor of Management Information Systems (MIS) 
+University of Economics and Law (UEL), Ho Chi Minh City 
+2023 – 2027 
+• Cumulative GPA: 8.63/10.0 
+• Academic Encouragement Scholarship – Semester 2 (2025) 
+EXPERIENCES 
+Sợi Nắng Program – Nguyễn Hiền Foundation 
+Role: Marcom Leader 
+Oct 2024 – Now 
+• Managed, coordinated, and planned communication activities. 
+• Applied AI agents for image generation and content ideation, reducing manpower and event runtime by 50%.  
+• Led the Spring 2026 Retreat program 
+PROJECTS 
+Scientific Research:GenAI System for Evaluating Greenwashing in Banking link 
+Role: Team Member | Business Analyst & Dev  
+Oct 2025 – July 2026 
+• Identified the need for transparency around greenwashing; built a system to extract PDFs to Markdown and analyze 
+ESG reports, using Chain-of-Thought prompting with the Gemini API to evaluate and quantify unstructured data.  
+• Optimized system accuracy through a 2 layer validator based on 41 GRI criteria, reducing AI hallucination by 80%. 
+• Quantified greenwashing scores, derived practical insights, and optimized audit time and process by 70%.  
+Testing and Evaluation of the Hasaki.vn System  
+Role: Team Member | QA Analyst 
+Feb 2026 – May 2026 
+• Analyzed system vulnerabilities; designed 25 test cases using EP/BVA techniques for 4 high -risk modules.  
+• Integrated automated testing with Selenium WebDriver and AI-driven testing, achieving a real 92% pass rate. 
+• Found 2 bugs and performed risk analysis, proposing web optimization solutions that improved customer 
+experience, and improved business efficiency 
+Velura Fashion E-commerce Website Development link 
+Role: Team Leader | Fullstack Dev 
+April 2026 – July 2026 
+• Identified sales pain points and proposed a Style Quiz and personalized recommendation solution powered 
+by the Gemini API, improve personalized shopping experience and increasing the conversion rate by 50%.  
+• Improved business processes; wrote specifications (BPMN/UC); conducted UAT testing and optimized the 
+website  
+• Used AI to design mockups and prototypes in Figma to test functional flows; used Vibecoding to support 
+full-stack website development; shipped to production 
+CERTIFICATES 
+Google Cloud Training Day: Big Data & Machine Learning Fundamentals – Cloud Ace (2024) 
+Introduction to SAP S/4HANA with ERPsim – NGIG (2024) 
+English – TOEIC 850 (Reading & Listening) 
+ACHIEVEMENTS 
+Top 5 University-level Scientific Research (2026) 
+Top 6 Community Project – Garbage Enzyme Project, SCG Vietnam (2024) 
+Lương Văn Can Foundation Scholarship 
+2026 
+2024 
+2025-2026 
+SKILLS 
+Business Analysis: Writing specifications, BPMN/Use Case/DFD Diagrams, UAT Testing, Sprint Planning, Market 
+Research, Success Metrics 
+Design: Figma, Canva. 
+Programming: Python, HTML/CSS, ReactJS. 
+AI: Generative AI, Gemini API, Claude, n8n, OCR, API Integration, MCP 
+Soft Skills: Teamwork, Problem Solving, Project Management, Communication. Good English.  

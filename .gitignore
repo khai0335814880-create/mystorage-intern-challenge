@@ -1,0 +1,11 @@
+# Node modules
+node_modules/
+dist/
+out-tsc/
+.angular/
+
+# System / IDE
+.vscode/
+.idea/
+.DS_Store
+*.log
