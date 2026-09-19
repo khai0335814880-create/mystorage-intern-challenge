@@ -4,6 +4,12 @@ dist/
 out-tsc/
 .angular/
 
+# Private Personal Files & PDFs (Do not publish to public GitHub)
+*.pdf
+CV_AI_ProductManage_EN.pdf
+mystorage_intern_assignment.pdf
+report_body_temp.pdf
+
 # System / IDE
 .vscode/
 .idea/
