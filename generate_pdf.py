@@ -7,11 +7,30 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import (
     SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, HRFlowable
 )
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 cv_pdf_path = os.path.join(base_dir, 'CV_AI_ProductManage_EN.pdf')
 report_temp_path = os.path.join(base_dir, 'report_body_temp.pdf')
 final_pdf_path = os.path.join(base_dir, 'mystorage_intern_assignment.pdf')
+
+# Register TrueType Fonts for 100% Vietnamese Unicode Support (No black boxes)
+font_regular = r'C:\Windows\Fonts\arial.ttf'
+font_bold = r'C:\Windows\Fonts\arialbd.ttf'
+font_italic = r'C:\Windows\Fonts\ariali.ttf'
+
+if os.path.exists(font_regular) and os.path.exists(font_bold):
+    pdfmetrics.registerFont(TTFont('ArialVN', font_regular))
+    pdfmetrics.registerFont(TTFont('ArialVN-Bold', font_bold))
+    pdfmetrics.registerFont(TTFont('ArialVN-Italic', font_italic if os.path.exists(font_italic) else font_regular))
+    font_name_regular = 'ArialVN'
+    font_name_bold = 'ArialVN-Bold'
+    font_name_italic = 'ArialVN-Italic'
+else:
+    font_name_regular = 'Helvetica'
+    font_name_bold = 'Helvetica-Bold'
+    font_name_italic = 'Helvetica-Oblique'
 
 doc = SimpleDocTemplate(
     report_temp_path,
@@ -21,13 +40,13 @@ doc = SimpleDocTemplate(
 
 styles = getSampleStyleSheet()
 
-# Custom Palette (MyStorage Brand: Blue #0275BC, Dark #0F172A, Accent #0369A1, Light #F8FAFC)
+# Custom Styles with ArialVN font
 title_style = ParagraphStyle(
     'DocTitle',
     parent=styles['Normal'],
-    fontName='Helvetica-Bold',
-    fontSize=20,
-    leading=24,
+    fontName=font_name_bold,
+    fontSize=18,
+    leading=22,
     textColor=colors.HexColor('#0275BC'),
     spaceAfter=4
 )
@@ -35,7 +54,7 @@ title_style = ParagraphStyle(
 subtitle_style = ParagraphStyle(
     'DocSubTitle',
     parent=styles['Normal'],
-    fontName='Helvetica-Bold',
+    fontName=font_name_bold,
     fontSize=11,
     leading=14,
     textColor=colors.HexColor('#0F172A'),
@@ -45,9 +64,9 @@ subtitle_style = ParagraphStyle(
 h1_style = ParagraphStyle(
     'SectionH1',
     parent=styles['Normal'],
-    fontName='Helvetica-Bold',
-    fontSize=13,
-    leading=17,
+    fontName=font_name_bold,
+    fontSize=12.5,
+    leading=16,
     textColor=colors.HexColor('#0275BC'),
     spaceBefore=12,
     spaceAfter=6
@@ -56,9 +75,9 @@ h1_style = ParagraphStyle(
 h2_style = ParagraphStyle(
     'SectionH2',
     parent=styles['Normal'],
-    fontName='Helvetica-Bold',
-    fontSize=10.5,
-    leading=14,
+    fontName=font_name_bold,
+    fontSize=10,
+    leading=13.5,
     textColor=colors.HexColor('#0369A1'),
     spaceBefore=8,
     spaceAfter=4
@@ -67,7 +86,7 @@ h2_style = ParagraphStyle(
 body_style = ParagraphStyle(
     'BodyDark',
     parent=styles['Normal'],
-    fontName='Helvetica',
+    fontName=font_name_regular,
     fontSize=9,
     leading=13,
     textColor=colors.HexColor('#1E293B'),
@@ -204,8 +223,8 @@ story.append(Spacer(1, 10))
 # SECTION 4: NOTE ON AI TOOL USE (REQUIRED < 300 WORDS)
 story.append(Paragraph("4. Brief Note on AI Tool Usage (< 300 words)", h1_style))
 story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#E2E8F0'), spaceAfter=6))
-story.append(Paragraph("<i>Question: What's the last thing you built with an AI coding tool, and what did you have to fix yourself?</i>", ParagraphStyle('ItalicHead', parent=body_style, fontName='Helvetica-Oblique', textColor=colors.HexColor('#475569'))))
-story.append(Paragraph("The last project I built with an AI coding tool (Antigravity AI) was my interactive Developer Portfolio and the STOW 2.0 AI Assistant prototype for MyStorage. While the AI rapidly scaffolded UI components and PDF generation scripts, I had to fix several critical issues myself: refactoring legacy Angular template syntax, fixing signal array mutation bugs (`this.items().push` vs `.update()`), resolving i18n locale state desync across chat and voice modes, and engineering a custom Python PDF merger script to combine my CV with clickable assignment links into a single PDF under the 4MB limit.", body_style))
+story.append(Paragraph("<i>Question: What's the last thing you built with an AI coding tool, and what did you have to fix yourself?</i>", ParagraphStyle('ItalicHead', parent=body_style, fontName=font_name_italic, textColor=colors.HexColor('#475569'))))
+story.append(Paragraph("The last project I built with an AI coding tool (Antigravity AI) was my interactive Developer Portfolio and the STOW 2.0 AI Assistant prototype for MyStorage. While the AI rapidly scaffolded UI components and PDF generation scripts, I had to fix several critical issues myself: refactoring legacy Angular template syntax, fixing signal array mutation bugs (`this.items().push` vs `.update()`), resolving i18n locale state desync across chat and voice modes, and engineering a custom Python PDF merger script with Arial TrueType font registration to display Vietnamese Unicode characters without font rendering errors, combining my CV with clickable assignment links under the 4MB limit.", body_style))
 
 # Build temporary report PDF
 doc.build(story)
