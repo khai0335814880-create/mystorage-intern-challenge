@@ -17,6 +17,7 @@ mystorage-intern-challenge/
 ├── CV_AI_ProductManage_EN.pdf       # Candidate CV (Page 1 in merged report)
 ├── audit_report.md                # Detailed system audit of stow.mystorage.vn (Findings 1, 2, 3)
 ├── generate_pdf.py                # Python script to merge CV + audit report into single PDF (< 4MB)
+├── submit_application.py          # Python script to submit application directly to MyStorage API
 ├── mystorage_intern_assignment.pdf # Single merged PDF file (< 4MB) with clickable links
 ├── src/
 │   ├── index.html
@@ -34,37 +35,35 @@ mystorage-intern-challenge/
 
 ---
 
-## 🌐 How Reviewers Can Access & Test the STOW 2.0 Prototype
+## 🚀 Quick Start (Running the Prototype)
 
-1. **Live Deployed Prototype URL**: Visit [mystorage-intern-challenge-e507g80yp.vercel.app](https://mystorage-intern-challenge-e507g80yp.vercel.app/).
-2. **GitHub Source Code**: Inspect repository at [github.com/khai0335814880-create/mystorage-intern-challenge](https://github.com/khai0335814880-create/mystorage-intern-challenge).
-3. **Local Run Commands**:
-   ```bash
-   git clone https://github.com/khai0335814880-create/mystorage-intern-challenge.git
-   cd mystorage-intern-challenge
-   npm install
-   npm start
-   # Open browser at http://localhost:4200/
-   ```
-
-### Re-compiling PDF Assignment Report
 ```bash
-python generate_pdf.py
+# 1. Install dependencies
+npm install
+
+# 2. Run local development server
+npm start
+
+# 3. Open browser at http://localhost:4200/
 ```
 
 ---
 
 ## 📤 Submitting Application to MyStorage API Endpoint
 
-Run the following `cURL` command to submit your completed assignment PDF:
-
+### Method 1: Python Script (Recommended — No Shell Errors)
 ```bash
-curl -X POST https://mystorage.vn/api/careers/apply \
-  -F "job=product-engineering-intern" \
-  -F "name=NGUYỄN NHƯ KHẢI" \
-  -F "email=khai0335814880@gmail.com" \
-  -F "phone=0335814880" \
-  -F "note=The last project I built with an AI coding tool (Antigravity AI) was my interactive Developer Portfolio and the STOW 2.0 AI Assistant prototype for MyStorage. While the AI rapidly scaffolded UI components and PDF generation scripts, I had to fix several critical issues myself: refactoring legacy Angular template syntax, fixing signal array mutation bugs, resolving i18n locale desync, and engineering a custom Python PDF merger to combine my CV with clickable assignment links under the 4MB limit." \
-  -F "links=https://github.com/khai0335814880-create/mystorage-intern-challenge" \
+python submit_application.py
+```
+
+### Method 2: Command Prompt (cmd.exe)
+```cmd
+curl.exe -X POST https://mystorage.vn/api/careers/apply ^
+  -F "job=product-engineering-intern" ^
+  -F "name=NGUYỄN NHƯ KHẢI" ^
+  -F "email=khai0335814880@gmail.com" ^
+  -F "phone=0335814880" ^
+  -F "note=The last project I built with an AI coding tool (Antigravity AI) was my interactive Developer Portfolio and the STOW 2.0 AI Assistant prototype for MyStorage. While the AI rapidly scaffolded UI components and PDF generation scripts, I had to fix several critical issues myself: refactoring legacy Angular template syntax, fixing signal array mutation bugs, resolving i18n locale desync, and engineering a custom Python PDF merger script with Arial TrueType font registration to display Vietnamese Unicode characters without font rendering errors, combining my CV with clickable assignment links under the 4MB limit." ^
+  -F "links=https://github.com/khai0335814880-create/mystorage-intern-challenge" ^
   -F "file=@mystorage_intern_assignment.pdf;type=application/pdf"
 ```
